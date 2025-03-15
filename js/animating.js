@@ -100,12 +100,12 @@ var PageTransitions = (function ($, options) {
     }
 
     function getActiveSection() {
-        if(location.hash === "") {
-            return location.hash = $('section.animated-section').first().attr('data-id');
-        } 
-        else {
-            return location.hash;
-        }
+    if(location.hash === "") {
+        return location.hash = "home";
+    } 
+    else {
+        return location.hash;
+    }
     }
 
     function activeMenuItem(item) {
