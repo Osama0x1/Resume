@@ -513,8 +513,8 @@
                         <h3>How Can I <span>Help You?</span></h3>
                       </div>
 
-                    
-                    
+                      <form id="contact_form" class="contact-form" action="contact_form/contact_form.php" method="post">
+
                         <div class="messages"></div>
 
                         <div class="controls two-columns">
@@ -613,9 +613,9 @@
 
     document.getElementById("footer-form").addEventListener("submit", function (event) {
       event.preventDefault();
-      const name = document.getElementById("name2").value;
-      const email = document.getElementById("email2").value;
-      const message = document.getElementById("message2").value;
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
       emailjs.send("service_hkkg9td", "template_8zw5jdr", {
         from_name: name,  // Match the template variable name
         to_name: "Support@HackAsia",  // Change this if dynamic
