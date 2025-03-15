@@ -665,7 +665,15 @@
 
       // Clear previous messages
       messagesDiv.innerHTML = "";
+      // Get reCAPTCHA response
+      const recaptchaResponse = grecaptcha.getResponse();
 
+      console.log("capcta", recaptchaResponse);
+      if (!recaptchaResponse) {
+        // If reCAPTCHA is not checked, show error and stop submission
+        messagesDiv.innerHTML = '<p style="color: red; font-weight: bold;">Please complete the reCAPTCHA.</p>';
+        return;
+      }
       // Send email using EmailJS
       emailjs.send("service_hkkg9td", "template_8zw5jdr", {
         from_name: name,
@@ -676,6 +684,7 @@
       }).then(function (response) {
         messagesDiv.innerHTML = '<p style="color: green; font-weight: bold;">Message sent successfully!</p>';
         document.getElementById("contact_form").reset(); // Clear the form
+        grecaptcha.reset();
       }).catch(function (error) {
         console.log("Failed to send email.", error);
         messagesDiv.innerHTML = '<p style="color: red; font-weight: bold;">Error sending message. Please try again.</p>';
