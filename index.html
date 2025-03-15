@@ -639,14 +639,22 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Select the first tab (Home)
-      let homeTab = document.querySelector(".nav-tabs .nav-item:first-child a");
+      // Show preloader initially
+      document.querySelector(".preloader-animation").style.display = "flex";
 
+      // Ensure the first tab (Home) is active
+      let homeTab = document.querySelector(".nav-tabs .nav-item:first-child a");
       if (homeTab) {
-        homeTab.click(); // Simulate a click on the first tab (Home)
+        homeTab.click();
       }
     });
+
+    // Remove the preloader when the page is fully loaded
+    window.addEventListener("load", function () {
+      document.querySelector(".preloader-animation").style.display = "none";
+    });
   </script>
+
 
   <script>
     (function () {
