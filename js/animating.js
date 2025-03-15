@@ -35,9 +35,8 @@ var PageTransitions = (function ($, options) {
 
         // Get all the .pt-wrapper div which is the parent for all pt-div
         sectionsContainer.each(function () {
-            if (location.hash === "") {
-                $('section[data-id=' + pageStart + ']').addClass('section-active');
-            }
+            $('section').removeClass('section-active'); // Remove active class from all sections
+            $('section[data-id="' + pageStart.replace("#", "") + '"]').addClass('section-active'); // Activate the correct section
         });
 
         // Adding click event to main menu link
@@ -64,17 +63,18 @@ var PageTransitions = (function ($, options) {
                 var menuLink;
 
                 // Ensure #home is the default
-                if (location.hash === "#" || location.hash === "") {
+                if (!location.hash || location.hash === "#" || location.hash === "#/") {
                     menuLink = $(menu + ' a[href="#home"]');
                 } else {
                     menuLink = $(menu + ' a[href*="' + location.hash.split('/')[0] + '"]');
                 }
 
                 activeMenuItem(menuLink);
-                Animate(menuLink);  // Ensure the correct animation
+                Animate(menuLink);
                 ajaxLoader();
             }
         };
+
 
         var menu = options.menu,
             pageStart = getActiveSection();
@@ -109,10 +109,11 @@ var PageTransitions = (function ($, options) {
     }
 
     function getActiveSection() {
-        if (!location.hash || location.hash === "#") {
-            return "#home";  // Ensure home is the first section
+        if (!location.hash || location.hash === "#" || location.hash === "#/") {
+            return "#home";  // Ensure #home is always selected
+        } else {
+            return location.hash;
         }
-        return location.hash;
     }
 
     function activeMenuItem(item) {
