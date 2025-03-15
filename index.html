@@ -637,23 +637,6 @@
   <script src="js/validator.js"></script>
   <script src="js/main.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Show preloader initially
-      document.querySelector(".preloader-animation").style.display = "flex";
-
-      // Ensure the first tab (Home) is active
-      let homeTab = document.querySelector(".nav-tabs .nav-item:first-child a");
-      if (homeTab) {
-        homeTab.click();
-      }
-    });
-
-    // Remove the preloader when the page is fully loaded
-    window.addEventListener("load", function () {
-      document.querySelector(".preloader-animation").style.display = "none";
-    });
-  </script>
 
 
   <script>
