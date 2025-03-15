@@ -584,5 +584,62 @@
 
     <script src="js/validator.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- JavaScript files placed at the end of the document so the pages load faster
+    ================================================== -->
+    <!-- Jquery and Bootstap core js files -->
+    <script type="text/javascript" src="plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Modernizr javascript -->
+    <script type="text/javascript" src="plugins/modernizr.js"></script>
+
+    <!-- Isotope javascript -->
+    <script type="text/javascript" src="plugins/isotope/isotope.pkgd.min.js"></script>
+
+    <!-- Backstretch javascript -->
+    <script type="text/javascript" src="plugins/jquery.backstretch.min.js"></script>
+
+    <!-- Appear javascript -->
+    <script type="text/javascript" src="plugins/jquery.appear.js"></script>
+
+    <!-- Initialization of Plugins -->
+    <script type="text/javascript" src="js/template.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+    (function () {
+      emailjs.init("98fq-ghtrHDzCmv30"); // Replace with your EmailJS Public Key
+    })();
+
+    document.getElementById("footer-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const name = document.getElementById("name2").value;
+      const email = document.getElementById("email2").value;
+      const message = document.getElementById("message2").value;
+      emailjs.send("service_hkkg9td", "template_8zw5jdr", {
+        from_name: name,  // Match the template variable name
+        to_name: "Support@HackAsia",  // Change this if dynamic
+        email: email,
+        message: message
+      }).then(function (response) {
+        document.getElementById("success-message").style.display = "block";
+      }).catch(function (error) {
+        console.log("Failed to send email.", error);
+      });
+    });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EFR8NY94R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+      gtag('config', 'G-4EFR8NY94R');
+    </script>
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LePQfAqAAAAAAIq2O1AJo1nAv5Z2HO6BSwLUmnH">
+    </script>
+
 </body>
 </html>
