@@ -27,11 +27,19 @@ var PageTransitions = (function ($, options) {
 
     function init(options) {
 
+        var pageStart = getActiveSection();
+        if (!location.hash) {
+            location.hash = pageStart;
+        }
+
         // Get all the .animated-section sections.
         $('.animated-section').each(function () {
             var $page = $(this);
             $page.data('originalClassList', $page.attr('class'));
         });
+        $('.animated-section').removeClass('section-active');
+        $('section[data-id="' + pageStart.replace('#', '') + '"]')
+            .addClass('section-active');
 
         // Get all the .pt-wrapper div which is the parent for all pt-div
         sectionsContainer.each(function () {
@@ -100,12 +108,14 @@ var PageTransitions = (function ($, options) {
     }
 
     function getActiveSection() {
-        if (location.hash === "") {
-            return location.hash = $('section.animated-section').first().attr('data-id');
+        var sections = $('.animated-section');
+        var hash = location.hash.split('/')[0];
+
+        // Default to home if no hash or invalid hash
+        if (!hash || !sections.is('[data-id="' + hash.replace('#', '') + '"]')) {
+            return '#home';
         }
-        else {
-            return location.hash;
-        }
+        return hash;
     }
 
     function activeMenuItem(item) {
